@@ -3,7 +3,7 @@
     var y = 1;
     var c = 0;
     var EO = 0;
-    var p = 0;
+    var p = 1;
     var x1 = 2;
     var y1 = 2;
     var plus = 5;
