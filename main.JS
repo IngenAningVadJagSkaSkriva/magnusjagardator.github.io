@@ -5,20 +5,27 @@
     var EO = 0;
     var x1 = 2;
     var y1 = 2;
-    var plus = 2;
-    var plus2 = 1;
+    var plus = 5;
+    var plus2 = 3;
     var plusA2 = 0;
     var plus22 = plus2;
-    var plusMAX = 2;
+    var plusMAX = 5;
+    var plus2MAX = 3;
     var pointU = 0;
     var pointM = 0;
-    var ptw = 5;
+    var ptw = 15;
+    var ptR = 10;
     var count = 0;
+    var fruitY = Math.round(screen.height / 2);
+    var fruitX = Math.round(screen.width / 2);
+    var fruit = window.open('','','HEIGHT=' + window.outerHeight + ',WIDTH=' + window.outerWidth);
+    fruit.document.write('<html><head><link rel="stylesheet" href="magnus.css"></head><body><h2><img class="nono" src="flash.gif"></h2></body></html>')
     var magnus = window.open('','','HEIGHT=' + window.outerHeight + ',WIDTH=' + window.outerWidth);
     magnus.document.write('<html><head><link rel="stylesheet" href="magnus.css"></head><body><h2><img class="nono" src="magnus.jpg"></h2></body></html>');
     var xM = screen.width - magnus.window.outerWidth;
     var yM = screen.height - magnus.window.outerHeight;
-    magnus.window.moveTo(xM,yM);
+    magnus.moveTo(xM,yM);
+    fruit.moveTo((screen.width / 2),(screen.height / 2));
     function RB(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
        }
@@ -93,6 +100,14 @@ var move = function() {
         y = y - plus;
         break;
     }
+    for(let xx = fruitX; xx < (fruitX + fruit.outerWidth); xx++) {
+        for(let yy = fruitY; yy < (fruitY + fruit.outerHeight); yy++) {
+            if((xx == x) && (yy == y)) {
+                move3();
+                pointU++;
+            }
+        }
+    }
     window.moveTo(x,y);
     if(pointM >= 9) {
         window.moveTo((x + RB(-5,5)),(y + RB(-5,5)));
@@ -114,22 +129,23 @@ var move2 = function() {
                 if(pointM >= 10) setInterval(hang, 1);
                 alert("POINTS IN THIS GAME: " + pointU);
                 if(pointU < ptw) {
-                    alert("YOU CANT GET MORE THAN 5 POINTS?");
+                    alert("YOU CANT GET MORE THAN " + ptw + " POINTS?");
                     alert("MAGNUS WINS!!!");
                     pointM++;
                 } else if(pointU >= ptw) {
-                    count++;
-                    if(count >= 2) ptw++;
+                    ptw = Math.ceil(ptw * 1.1);
                     alert("YOU WON!!!");
                     alert("MAGNUS POINTS ARE SINKING!!!!");
-                    pointM--;
+                    for(let II = 0; II < Math.ceil(pointU / ptw); II++) {
+                        pointM--;
+                    }
                 }
                 alert("MAGNUS= " + pointM);
                 x = 0;
                 y = 0;
                 plus = 2;
-                plus2 = 1;
-                plus22 = 1;
+                plus2 = plus2MAX;
+                plus22 = plus2;
                 pointU = 0;
                 EO = 0;
                 plusA2 = 0;
@@ -139,7 +155,7 @@ var move2 = function() {
         }
     }
     magnus.moveTo(xM,yM);
-    if(pointU >= 4) {
+    if(pointU >= ptR) {
         if(EO == 0) {
             plus22 = plus22 * 1.5;
             plus2 = Math.round(plus22);
@@ -147,6 +163,11 @@ var move2 = function() {
         }
         magnus.moveTo((xM + RB(-10,10)),(yM + RB(-10,10)));
     }
+}
+var move3 = function() {
+    fruitY = RB(0,(screen.height - (fruit.outerHeight * 2)));
+    fruitX = RB(0,(screen.width - (fruit.outerWidth * 2)));
+    fruit.moveTo(fruitX,fruitY);
 }
 var title = function() {
     magnus.document.title = plus2;
@@ -161,5 +182,6 @@ var hang = function() {
 window.focus();
 setInterval(points, 10000);
 setInterval(title, 500);
-setInterval(move, 1);
+setInterval(move, 10);
 setInterval(move2, 10);
+setInterval(move3, 10000);
