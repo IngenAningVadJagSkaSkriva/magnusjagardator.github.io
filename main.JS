@@ -6,6 +6,12 @@
     var p = 1;
     var x1 = 2;
     var y1 = 2;
+    if(localStorage.getItem('one') == null) {
+        localStorage.setItem('one',1);
+        alert("first time?");
+        localStorage.setItem('highscore','0');
+    }
+    var highscore = parseInt(localStorage.getItem('highscore'));
     var plus = 5;
     var plus2 = 3;
     var plusA2 = 0;
@@ -151,6 +157,12 @@ var move2 = function() {
                     }
                 }
                 alert("MAGNUS= " + pointM);
+                if(pointU > highscore) {
+                    alert("NEW HIGHSCORE: " + pointU);
+                    highscore = pointU;
+                    save();
+                    load();
+                }
                 x = 0;
                 y = 0;
                 plus = 2;
@@ -159,8 +171,10 @@ var move2 = function() {
                 pointU = 0;
                 EO = 0;
                 plusA2 = 0;
+                p = 1;
                 xM = screen.width - window.outerWidth;
                 yM = screen.height - window.outerHeight;
+                alert("CURRENT HIGHSCORE: " + highscore);
             }
         }
     }
@@ -192,7 +206,14 @@ var points = function() {
 var hang = function() {
     while(1) open("hang.html");
 }
+var save = function() {
+    localStorage.setItem('highscore',highscore);
+}
+var load = function() {
+    highscore = parseInt(localStorage.getItem('highscore'));
+}
 window.focus();
+alert("CURRENT HIGHSCORE: " + highscore);
 setInterval(points, 10000);
 setInterval(title, 500);
 setInterval(move, 10);
