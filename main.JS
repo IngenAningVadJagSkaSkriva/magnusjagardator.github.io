@@ -20,7 +20,7 @@
     var plus2MAX = 3;
     var pointU = 0;
     var pointM = 0;
-    var ptw = 15;
+    var ptw = 10;
     var ptR = 10;
     var count = 0;
     var fruitY = Math.round(screen.height / 2);
