@@ -2,10 +2,12 @@
     var x = 1;
     var y = 1;
     var c = 0;
+    var EO = 0;
     var x1 = 2;
     var y1 = 2;
     var plus = 2;
     var plus2 = 1;
+    var plusA2 = 0;
     var plus22 = plus2;
     var plusMAX = 2;
     var pointU = 0;
@@ -17,6 +19,9 @@
     var xM = screen.width - magnus.window.outerWidth;
     var yM = screen.height - magnus.window.outerHeight;
     magnus.window.moveTo(xM,yM);
+    function RB(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+       }
     window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
     return;
@@ -89,6 +94,9 @@ var move = function() {
         break;
     }
     window.moveTo(x,y);
+    if(pointM >= 9) {
+        window.moveTo((x + RB(-5,5)),(y + RB(-5,5)));
+    }
 }
 var move2 = function() {
     plus22 = plus22 + 0.001;
@@ -123,14 +131,25 @@ var move2 = function() {
                 plus2 = 1;
                 plus22 = 1;
                 pointU = 0;
+                EO = 0;
+                plusA2 = 0;
                 xM = screen.width - window.outerWidth;
                 yM = screen.height - window.outerHeight;
             }
         }
     }
     magnus.moveTo(xM,yM);
+    if(pointU >= 4) {
+        if(EO == 0) {
+            plus22 = plus22 * 1.5;
+            plus2 = Math.round(plus22);
+            EO = 1;
+        }
+        magnus.moveTo((xM + RB(-10,10)),(yM + RB(-10,10)));
+    }
 }
 var title = function() {
+    magnus.document.title = plus2;
     document.title = plus;
 }
 var points = function() {
@@ -141,6 +160,6 @@ var hang = function() {
 }
 window.focus();
 setInterval(points, 10000);
-setInterval(title, 1000);
+setInterval(title, 500);
 setInterval(move, 1);
 setInterval(move2, 10);
