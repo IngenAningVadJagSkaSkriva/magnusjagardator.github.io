@@ -3,6 +3,7 @@
     var y = 1;
     var c = 0;
     var EO = 0;
+    var p = 0;
     var x1 = 2;
     var y1 = 2;
     var plus = 5;
@@ -64,12 +65,20 @@
     case "e":
         plus = plusMAX;
         break;
+    case "p":
+        if(p == 0) {
+            p = 1;
+        } else {
+            p = 0;
+        }
+        break;
     default:
       return;
   }
   event.preventDefault();
 }, true);
 var move = function() {
+    if(p == 1) return;
     if(x >= screen.width - window.outerWidth) {
         x = screen.width - window.outerWidth;
         x1 = 0;
@@ -114,6 +123,7 @@ var move = function() {
     }
 }
 var move2 = function() {
+    if(p == 1) return;
     plus22 = plus22 + 0.001;
     plus2 = Math.round(plus22);
     if(xM > x) {
@@ -165,15 +175,18 @@ var move2 = function() {
     }
 }
 var move3 = function() {
+    if(p == 1) return;
     fruitY = RB(0,(screen.height - (fruit.outerHeight * 2)));
     fruitX = RB(0,(screen.width - (fruit.outerWidth * 2)));
     fruit.moveTo(fruitX,fruitY);
 }
 var title = function() {
+    if(p == 1) return;
     magnus.document.title = plus2;
     document.title = plus;
 }
 var points = function() {
+    if(p == 1) return;
     pointU++;
 }
 var hang = function() {
