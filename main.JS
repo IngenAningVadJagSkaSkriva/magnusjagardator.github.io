@@ -212,7 +212,7 @@ if(p == 1) return;
 pointU++;
 }
 var hang = function() {
-while(1) open("hang.html");
+    open("hang.html");
 }
 var save = function() {
 localStorage.setItem('highscore',highscore);
