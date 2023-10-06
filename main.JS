@@ -159,7 +159,7 @@ switch(y1) {
     y = y - plus;
     break;
 }
-if(((x >= fruitX && x <= (fruitX + fruit.outerWidth)) && (y >= fruitY && y <= (fruitY + fruitY + fruit.outerHeight))) || ((fruitX >= x && fruitX <= (x + window.outerWidth)) && (fruitY >= y && fruitY <= (y + window.outerHeight)))) {
+if(((x >= fruitX && x <= (fruitX + fruit.outerWidth)) && (y >= fruitY && y <= (fruitY + fruit.outerHeight))) || ((fruitX >= x && fruitX <= (x + window.outerWidth)) && (fruitY >= y && fruitY <= (y + window.outerHeight)))) {
     bloodscream.play();
     move3();
     pointU++;
