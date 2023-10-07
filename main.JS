@@ -35,6 +35,12 @@ var xM = screen.width - magnus.window.outerWidth;
 var yM = screen.height - magnus.window.outerHeight;
 var sizeXM = magnus.outerWidth;
 var sizeYM = magnus.outerHeight;
+var sizeXM2 = sizeXM;
+var sizeYM2 = sizeYM;
+const sizeX = window.outerWidth;
+const sizeY = window.outerHeight;
+const sizeXF = fruit.outerWidth;
+const sizeYF = fruit.outerHeight;
 magnus.moveTo(xM,yM);
 fruit.moveTo((screen.width / 2),(screen.height / 2));
 function RB(min, max) {
@@ -72,13 +78,15 @@ var finish = function() {
     EO = 0;
     plusA2 = 0;
     p = 1;
-    sizeXM = window.outerWidth;
-    sizeYM = window.outerHeight;
-    magnus.resizeTo(window.outerWidth,window.outerHeight);
+    sizeXM = sizeX;
+    sizeYM = sizeY;
+    sizeXM2 = sizeXM;
+    sizeYM2 = sizeYM;
+    magnus.resizeTo(sizeXM,sizeYM);
+    fruit.resizeTo(sizeXF,sizeYF);
     xM = screen.width - window.outerWidth;
     yM = screen.height - window.outerHeight;
     alert("CURRENT HIGHSCORE: " + highscore);
-
 }
 window.addEventListener("keydown", function (event) {
 if (event.defaultPrevented) {
@@ -190,8 +198,10 @@ if(pointU >= ptR) {
         plus2 = Math.round(plus22);
         EO = 1;
     }
-    sizeXM = sizeXM * 1.0001;
-    sizeYM = sizeYM * 1.0001;
+    sizeXM2 = sizeXM2 * 1.001;
+    sizeYM2 = sizeYM2 * 1.001;
+    sizeXM = Math.round(sizeXM2);
+    sizeYM = Math.round(sizeYM2);
     magnus.resizeTo(sizeXM,sizeYM);
     magnus.moveTo((xM + RB(-10,10)),(yM + RB(-10,10)));
 }
@@ -227,3 +237,13 @@ setInterval(title, 500);
 setInterval(move, 10);
 setInterval(move2, 10);
 setInterval(move3, 10000);
+setInterval(function() {
+    if((sizeXM != magnus.outerWidth) || (sizeYM != magnus.outerHeight) || (sizeX != window.outerWidth) || (sizeY != window.outerHeight) || (sizeXF != fruit.outerWidth) || (sizeYF != fruit.outerHeight)) {
+        highscore = -999;
+        save();
+        magnus.resizeTo(screen.width,screen.height);
+        magnus.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        fruit.close();
+        location.href = "bakgrund.jpg";
+    }
+}, 1000);
