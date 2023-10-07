@@ -198,8 +198,8 @@ if(pointU >= ptR) {
         plus2 = Math.round(plus22);
         EO = 1;
     }
-    sizeXM2 = sizeXM2 * 1.001;
-    sizeYM2 = sizeYM2 * 1.001;
+    sizeXM2 = sizeXM2 * 1.0001;
+    sizeYM2 = sizeYM2 * 1.0001;
     sizeXM = Math.round(sizeXM2);
     sizeYM = Math.round(sizeYM2);
     magnus.resizeTo(sizeXM,sizeYM);
