@@ -167,11 +167,27 @@ switch(y1) {
     y = y - plus;
     break;
 }
-if(((x >= fruitX && x <= (fruitX + fruit.outerWidth)) && (y >= fruitY && y <= (fruitY + fruit.outerHeight))) || ((fruitX >= x && fruitX <= (x + window.outerWidth)) && (fruitY >= y && fruitY <= (y + window.outerHeight)))) {
-    bloodscream.play();
-    move3();
-    pointU++;
+//X0
+//00
+if(x <= fruitX && y <= fruitY) if(((fruitX >= x && fruitX <= (x + window.outerWidth)) && (fruitY >= y && fruitY <= (y + window.outerHeight)))) {
+    move3()
 }
+//0X
+//00
+if(x >= fruitX && y <= fruitY) if((((fruitX + fruit.outerWidth) >= x && (fruitX + fruit.outerWidth) <= (x + window.outerWidth)) && (fruitY >= y && fruitY <= (y + window.outerHeight)))) {
+    move3()
+}
+//00
+//X0
+if(x <= fruitX && y >= fruitY) if(((fruitX >= x && fruitX <= (x + window.outerWidth)) && ((fruitY + fruit.outerHeight) >= y && (fruitY + outerHeight) <= (y + window.outerHeight)))) {
+    move3()
+}
+//00
+//0X
+if(x >= fruitX && y >= fruitY) if((((fruitX + fruit.outerWidth) >= x && (fruitX + fruit.outerWidth) <= (x + window.outerWidth)) && ((fruitY + fruit.outerHeight) >= y && (fruitY + fruit.outerHeight) <= (y + window.outerHeight)))) {
+    move3()
+}
+//king in the castle
 window.moveTo(x,y);
 if(pointM >= 9) {
     window.moveTo((x + RB(-5,5)),(y + RB(-5,5)));
@@ -208,6 +224,8 @@ if(pointU >= ptR) {
 }
 var move3 = function() {
 if(p == 1) return;
+bloodscream.play();
+pointU++;
 fruitY = RB(0,(screen.height - (fruit.outerHeight * 2)));
 fruitX = RB(0,(screen.width - (fruit.outerWidth * 2)));
 fruit.moveTo(fruitX,fruitY);
@@ -236,11 +254,11 @@ setInterval(points, 10000);
 setInterval(title, 500);
 setInterval(move, 10);
 setInterval(move2, 10);
-setInterval(move3, 10000);
 setInterval(function() {
     if((sizeXM != magnus.outerWidth) || (sizeYM != magnus.outerHeight) || (sizeX != window.outerWidth) || (sizeY != window.outerHeight) || (sizeXF != fruit.outerWidth) || (sizeYF != fruit.outerHeight)) {
-        highscore = -999;
+        highscore = highscore - 10;
         save();
+        alert("ARE YOU TRYING TO CHEAT? YOUR HIGHSCORE IS 10 POINTS SMALLER");
         magnus.resizeTo(screen.width,screen.height);
         magnus.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         fruit.close();
