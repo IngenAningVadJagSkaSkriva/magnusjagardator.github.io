@@ -240,6 +240,7 @@ if(p == 1) return;
 pointU++;
 }
 var hang = function() {
+    document.getElementById("scary").play();
     window.open("hang.html","","HEIGHT=1,WIDTH=1");
 }
 var save = function() {
