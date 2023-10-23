@@ -30,7 +30,7 @@ var fruitX = Math.round(screen.width / 2);
 var fruit = window.open('','','HEIGHT=' + window.outerHeight + ',WIDTH=' + window.outerWidth);
 fruit.document.write('<html><head><link rel="stylesheet" href="magnus.css"></head><body><h2><img class="nono" src="flash.gif"></h2></body></html>')
 var magnus = window.open('','','HEIGHT=' + window.outerHeight + ',WIDTH=' + window.outerWidth);
-magnus.document.write('<html><head><link rel="stylesheet" href="magnus.css"></head><body><h2><img class="nono" src="magnus.jpg"></h2></body></html>');
+magnus.document.write('<html><head><link rel="stylesheet" href="magnus.css"></head><body><h2><img class="nono" src="magnu.jpg"></h2></body></html>');
 var xM = screen.width - magnus.window.outerWidth;
 var yM = screen.height - magnus.window.outerHeight;
 var sizeXM = magnus.outerWidth;
